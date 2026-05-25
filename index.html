@@ -3,67 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Panzerknacker II : Projekt Overlord</title>
+    <title>Panzerknacker II : Projekt Overlord (D5 Extreme)</title>
     <style>
         /* --- GLOBAL & THEME --- */
-        body { 
-            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #d4d4d4 100%); 
-            font-family: 'Verdana', sans-serif; display: flex; flex-direction: column; align-items: center; 
-            justify-content: center; min-height: 100vh; margin: 0; padding: 10px; color: #222; 
-            user-select: none; box-sizing: border-box; overflow-x: hidden; 
-        }
-
+        body { background: radial-gradient(circle at 50% 50%, #ffffff 0%, #d4d4d4 100%); font-family: 'Verdana', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 10px; color: #222; user-select: none; box-sizing: border-box; overflow-x: hidden; }
         h1 { color: #222; font-size: 26px; margin-bottom: 5px; text-align: center; font-weight: 900; letter-spacing: 1px;}
-        h2 { color: #c23616; letter-spacing: 3px; margin-bottom: 8px; text-shadow: 1px 1px 0px #fff; text-align: center; font-size: 16px; font-weight: bold; }
-        
+        h2 { color: #c23616; letter-spacing: 3px; margin-bottom: 8px; text-shadow: 1px 1px 0px #fff; text-align: center; font-size: 16px; font-weight: bold; text-transform: uppercase;}
         .screen { display: none; width: 100%; justify-content: center; flex-direction: column; align-items: center; }
         .screen.active { display: flex; }
-        
         .game-area { display: flex; gap: 15px; justify-content: center; align-items: flex-start; max-width: 900px; flex-direction: column; width: 100%; align-items: center;}
         
-        .vault-panel { 
-            background: linear-gradient(145deg, #ffffff, #e6e6e6); border-radius: 20px; padding: 20px; 
-            box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff; 
-            display: flex; flex-direction: column; align-items: center; border: 2px solid #ccc; 
-            width: 320px; box-sizing: border-box; position: relative; overflow: hidden; 
-        }
+        .vault-panel { background: linear-gradient(145deg, #ffffff, #e6e6e6); border-radius: 20px; padding: 20px; box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff; display: flex; flex-direction: column; align-items: center; border: 2px solid #ccc; width: 320px; box-sizing: border-box; position: relative; overflow: hidden; }
         
-        .lcd { 
-            background-color: #9cb29c; border: 3px solid #555; border-radius: 5px; padding: 12px; margin-bottom: 10px; width: 100%; box-sizing: border-box; 
-            text-align: center; box-shadow: inset 3px 3px 8px rgba(0,0,0,0.3); color: #1a1a1a; font-size: 24px; font-weight: bold; letter-spacing: 2px; 
-            font-family: 'Courier New', Courier, monospace; min-height: 55px; display: flex; align-items: center; justify-content: center;
-        }
+        .lcd { background-color: #9cb29c; border: 3px solid #555; border-radius: 5px; padding: 12px; margin-bottom: 10px; width: 100%; box-sizing: border-box; text-align: center; box-shadow: inset 3px 3px 8px rgba(0,0,0,0.3); color: #1a1a1a; font-size: 22px; font-weight: bold; letter-spacing: 1px; font-family: 'Courier New', Courier, monospace; min-height: 55px; display: flex; align-items: center; justify-content: center;}
         
-        .btn { 
-            background: linear-gradient(145deg, #fbfbfb, #d4d4d4); color: #333; border: 1px solid #bbb; border-radius: 8px; padding: 12px 0; 
-            font-size: 16px; font-weight: bold; box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff; cursor: pointer; 
-            text-align: center; width: 100%; display: flex; justify-content: center; align-items: center; box-sizing: border-box; font-family: inherit; margin-top: 10px;
-            transition: all 0.1s;
-        }
+        .btn { background: linear-gradient(145deg, #fbfbfb, #d4d4d4); color: #333; border: 1px solid #bbb; border-radius: 8px; padding: 12px 0; font-size: 16px; font-weight: bold; box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff; cursor: pointer; text-align: center; width: 100%; display: flex; justify-content: center; align-items: center; box-sizing: border-box; font-family: inherit; margin-top: 10px; transition: all 0.1s;}
         .btn:active { box-shadow: inset 3px 3px 6px #bebebe; transform: translateY(1px); }
         .btn-green { background: #ddffdd; color: #060; border-color: #9c9; }
         .btn-red { background: #ffdddd; color: #a00; border-color: #c99; }
         
-        .note-paper { 
-            background: #fdf8e4; color: #111; padding: 15px; width: 100%; max-width: 320px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); 
-            font-size: 13px; line-height: 1.5; font-weight: bold; border-radius: 2px 15px 5px 25px; position: relative; border: 1px solid #ebdcb5; box-sizing: border-box;
-        }
-        .note-paper h3 { margin-top: 0; color: #c23616; font-size: 15px;}
+        .note-paper { background: #fdf8e4; color: #111; padding: 15px; width: 100%; max-width: 320px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); font-size: 13px; line-height: 1.5; font-weight: bold; border-radius: 2px 15px 5px 25px; position: relative; border: 1px solid #ebdcb5; box-sizing: border-box;}
+        .note-paper h3 { margin-top: 0; color: #c23616; font-size: 15px; text-transform: uppercase;}
+        .avatar-img { width: 140px; height: auto; border-radius: 4px; border: 2px solid #555; box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 20px; background-color: #fff; padding: 5px; object-fit: contain; transform: rotate(-2deg);}
 
-        .avatar-img { 
-            width: 140px; height: auto; border-radius: 4px; border: 2px solid #555; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 20px; 
-            background-color: #fff; padding: 5px; object-fit: contain; transform: rotate(-2deg);
-        }
-
-        /* ANIMATIONS */
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(194, 54, 22, 0.7); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(194, 54, 22, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(194, 54, 22, 0); }
-        }
-
+        
         /* L1 RADAR */
         .slider-wrap { width: 100%; margin-bottom: 15px; }
         .slider-wrap label { font-size: 12px; font-weight: bold; color: #555; }
@@ -73,8 +37,8 @@
         .signal-bar { width: 100%; height: 15px; background: #ddd; border-radius: 8px; overflow: hidden; border: 1px solid #aaa; margin-top: 10px;}
         .signal-fill { height: 100%; width: 0%; background: #00cc00; transition: width 0.2s, background 0.2s; }
 
-        /* L2 SOKOBAN */
-        .soko-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; background: #222; padding: 4px; border-radius: 6px; width: 220px; height: 220px; margin: 0 auto 15px auto;}
+        /* L2 SOKOBAN (7x7) */
+        .soko-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; background: #222; padding: 4px; border-radius: 6px; width: 250px; height: 250px; margin: 0 auto 15px auto;}
         .soko-cell { background: #333; border-radius: 2px; display: flex; justify-content: center; align-items: center;}
         .soko-wall { background: #555; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8); border: 1px solid #444; }
         .soko-target { background: #333; border: 2px dashed #00b894; border-radius: 50%; width: 60%; height: 60%;}
@@ -85,57 +49,61 @@
         .d-btn { background: #ddd; border: 2px solid #999; height: 45px; border-radius: 8px; font-weight: bold; font-size: 20px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 0 #999; }
         .d-btn:active { transform: translateY(4px); box-shadow: 0 0 0 #999; }
 
-        /* L3 BOOLEAN LOGIC */
-        .logic-switches { display: flex; justify-content: space-between; width: 100%; margin: 20px 0; }
-        .l-sw { width: 55px; height: 75px; background: #555; border: 3px solid #222; border-radius: 6px; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-weight: bold; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.4); }
+        /* L3 LOGIC 8 GATES */
+        .logic-switches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; margin: 15px 0; }
+        .l-sw { height: 55px; background: #555; border: 3px solid #222; border-radius: 6px; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-weight: bold; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.4); font-size: 12px;}
         .l-sw.on { background: #00b894; border-color: #009977; box-shadow: 0 0 15px #00b894, inset 0 2px 5px rgba(255,255,255,0.4); }
 
-        /* L4 PLATINEN-PFAD */
+        /* L4 PLATINEN */
         .circ-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; background: #333; padding: 4px; border-radius: 6px; position: relative;}
         .circ-tile-5 { width: 45px; height: 45px; background: #eee; cursor: pointer; transition: transform 0.2s; display: flex; justify-content: center; align-items: center; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.15);}
+        .circ-broken { background: #222; box-shadow: inset 0 0 10px #000; color: #c23616; font-size: 20px; font-weight: bold; }
         .port-label { position: absolute; font-size: 10px; font-weight: bold; color: #c23616; letter-spacing: 1px; font-family: monospace;}
         
-        /* L5 BYPASS */
-        .bypass-grid { display: flex; justify-content: space-around; width: 100%; background: #444; padding: 30px 10px; border-radius: 6px; box-sizing: border-box;}
-        .bypass-sw { width: 50px; height: 90px; border: 4px solid #222; border-radius: 8px; cursor: pointer; transition: background 0.1s; box-shadow: 0 5px 10px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.3);}
+        /* L5 BYPASS (LIGHTS OUT 3x3) */
+        .bypass-grid { display: grid; grid-template-columns: repeat(3, 70px); gap: 8px; width: 100%; background: #444; padding: 20px; border-radius: 6px; box-sizing: border-box; justify-content: center;}
+        .bypass-sw { width: 70px; height: 70px; border: 4px solid #222; border-radius: 8px; cursor: pointer; transition: background 0.1s; box-shadow: 0 5px 10px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.3);}
         .sw-red { background: #c23616; }
         .sw-green { background: #00b894; box-shadow: 0 0 20px #00b894, inset 0 2px 5px rgba(255,255,255,0.4); }
-        .hidden-link { color: #c23616; cursor: pointer; text-decoration: underline; font-weight: 900; }
 
-        /* L6 ECHOLOT */
-        .echo-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; width: 100%; background: #2f3640; padding: 8px; border-radius: 8px; box-sizing: border-box;}
-        .echo-btn { height: 45px; background: #1e272e; border: 2px solid #485460; border-radius: 4px; cursor: pointer; color: #00d2d3; font-weight: bold; font-size: 18px; display: flex; justify-content: center; align-items: center;}
+        /* L6 ECHOLOT (8x8) */
+        .echo-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 2px; width: 100%; background: #2f3640; padding: 6px; border-radius: 8px; box-sizing: border-box;}
+        .echo-btn { height: 30px; background: #1e272e; border: 1px solid #485460; border-radius: 2px; cursor: pointer; color: #00d2d3; font-weight: bold; font-size: 12px; display: flex; justify-content: center; align-items: center;}
         .echo-btn:active { background: #000; }
         .echo-btn.pinged { background: #d2dae2; color: #1e272e; pointer-events: none; }
 
-        /* L7 LASER */
-        .laser-grid { display: grid; grid-template-columns: repeat(3, 60px); gap: 4px; width: min-content; background: #222; padding: 4px; position: relative; margin: 0 auto; }
-        .laser-cell { background: #444; border: 1px solid #555; display: flex; justify-content: center; align-items: center; color: #00ffff; font-size: 34px; font-weight: bold; cursor: pointer; user-select: none; width: 60px; height: 60px; box-sizing: border-box; }
-        .laser-dot { position: absolute; width: 10px; height: 10px; background: #ff0000; border-radius: 50%; box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; top: -20px; left: -20px; opacity: 0; transition: all 0.2s linear; z-index: 10;}
-        .laser-port { position: absolute; width: 20px; height: 20px; background: #444; border: 2px solid #888; }
-        .port-in { left: -24px; top: 24px; border-right: none; }
-        .port-out { right: -24px; top: 88px; border-left: none; background: #1a1a1a; } /* Ausgang in der Mitte! */
+        /* L7 LASER MATRIX (6x6) */
+        .laser-grid { display: grid; grid-template-columns: repeat(6, 40px); gap: 2px; width: min-content; background: #222; padding: 4px; position: relative; margin: 0 auto; }
+        .laser-cell { background: #444; border: 1px solid #555; display: flex; justify-content: center; align-items: center; color: #00ffff; font-size: 22px; font-weight: bold; cursor: pointer; user-select: none; width: 40px; height: 40px; box-sizing: border-box; }
+        .laser-dot { position: absolute; width: 8px; height: 8px; background: #ff0000; border-radius: 50%; box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; top: -20px; left: -20px; opacity: 0; transition: all 0.15s linear; z-index: 10;}
+        .laser-port { position: absolute; width: 15px; height: 15px; background: #444; border: 2px solid #888; }
+        .port-in { left: -19px; top: 16px; border-right: none; }
+        .port-out { right: -19px; top: 226px; border-left: none; background: #1a1a1a; }
         
-        /* L8 OMEGA (Brainfuck) */
+        /* L8 OMEGA */
         .omega-bar-container { width: 100%; height: 35px; border: 3px solid #111; border-radius: 6px; margin: 20px 0; position: relative; background: #222; overflow: hidden; box-shadow: inset 0 0 15px rgba(0,0,0,0.9); }
         #l8-bar { height: 100%; width: 0%; background: #c23616; transition: width 0.1s linear; box-shadow: 0 0 15px #c23616; }
+        .omega-zone { position: absolute; right: 0; width: 15%; height: 100%; background: rgba(0, 255, 100, 0.2); border-left: 2px dashed #00b894; z-index: 5;}
+        
+        /* PENALTY SCREEN TARGET */
+        .pen-dot { width: 35px; height: 35px; background: #c23616; border-radius: 50%; position: absolute; cursor: pointer; display: none; box-shadow: 0 0 15px #c23616;}
     </style>
 </head>
 <body onload="initSystem()">
 
     <!-- BOOT SCREEN -->
     <div id="boot-screen" class="screen active" onclick="switchLevel('boot-screen', 'level-1')">
-        <img src="avatar.jpg" alt="Avatar" class="avatar-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'65\' font-size=\'40\' text-anchor=\'middle\' fill=\'white\'>V</text></svg>'">
+        <img src="Avatar.jpg" alt="Avatar" class="avatar-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'65\' font-size=\'40\' text-anchor=\'middle\' fill=\'white\'>V</text></svg>'">
         <h1 style="font-size: 30px; color: #222; line-height: 1.2; text-transform: uppercase;">PANZERKNACKER II<br><span style="font-size: 20px; color: #c23616;">PROJEKT OVERLORD</span></h1>
         <p style="color: #c23616; font-weight: bold; animation: blink 1.2s infinite; margin-top: 40px; font-size: 18px; border: 2px solid #c23616; padding: 10px 20px; border-radius: 5px;">[ SYSTEM BETRETEN ]</p>
     </div>
 
-    <!-- LEVEL 1: TRIANGULATION -->
+    <!-- LEVEL 1 -->
     <div id="level-1" class="screen">
         <h2>KAMMER I: TRIANGULATION</h2>
         <div class="game-area">
             <div class="vault-panel">
-                <div class="lcd">SIGNAL: <span id="l1-val">0</span>%</div>
+                <div class="lcd">SIGNAL PEILUNG</div>
                 <div class="signal-bar"><div class="signal-fill" id="l1-fill"></div></div>
                 <div style="width: 100%; margin-top: 20px;">
                     <div class="slider-wrap"><label>FREQUENZ X</label><input type="range" id="l1-x" min="0" max="100" value="0" oninput="l1_check()"></div>
@@ -144,27 +112,27 @@
                 </div>
                 <button class="btn btn-green" id="l1-btn" style="opacity: 0.5; pointer-events: none;" onclick="l1_win()">VERBINDEN</button>
             </div>
-            <div class="note-paper"><h3>Notiz 1</h3>Der Sweetspot ist unsichtbar. Bewege die Regler. Finde das Maximum. Heißer oder kälter?</div>
+            <div class="note-paper"><h3>Spezifikation</h3>Kalibriere X, Y, Z. Übereinstimmung muss exakt 100% betragen. Signal ausschließlich optisch validieren.</div>
         </div>
     </div>
 
-    <!-- LEVEL 2: SOKOBAN (Server-Schieber) -->
+    <!-- LEVEL 2 (SOKOBAN D5 - 7x7) -->
     <div id="level-2" class="screen">
         <h2>KAMMER II: SERVER-SCHIEBER</h2>
         <div class="game-area">
             <div class="vault-panel">
-                <div class="lcd" id="l2-lcd">ADMIN PROTOKOLL</div>
+                <div class="lcd" id="l2-lcd" style="font-size: 18px;">ADMIN PROTOKOLL</div>
                 <div class="soko-grid" id="l2-grid"></div>
                 <div class="d-pad">
                     <div></div><button class="d-btn" onclick="l2_move(0,-1)">▲</button><button class="btn btn-red" style="margin:0; padding:0; height:45px;" onclick="l2_init()">RST</button>
                     <button class="d-btn" onclick="l2_move(-1,0)">◄</button><button class="d-btn" onclick="l2_move(0,1)">▼</button><button class="d-btn" onclick="l2_move(1,0)">►</button>
                 </div>
             </div>
-            <div class="note-paper"><h3>Notiz 2</h3>Schiebe die zwei Datenpakete (Orange) auf die Ziel-Sektoren (Grünkreis). Du kannst nur schieben, nicht ziehen. Ein Fehler und du steckst fest (Nutze RST für Reset).</div>
+            <div class="note-paper"><h3>Spezifikation</h3>Daten-Cluster rangieren. Positioniere die 3 Kerne auf den Zielsektoren. Reset bei Deadlock manuell ausführen.</div>
         </div>
     </div>
 
-    <!-- LEVEL 3: BOOLEAN LOGIC (Turing-Knoten) -->
+    <!-- LEVEL 3 -->
     <div id="level-3" class="screen">
         <h2>KAMMER III: TURING-KNOTEN</h2>
         <div class="game-area">
@@ -175,22 +143,28 @@
                     <div class="l-sw" id="l3-sw-1" onclick="l3_tog(1)">B<br>OFF</div>
                     <div class="l-sw" id="l3-sw-2" onclick="l3_tog(2)">C<br>OFF</div>
                     <div class="l-sw" id="l3-sw-3" onclick="l3_tog(3)">D<br>OFF</div>
+                    <div class="l-sw" id="l3-sw-4" onclick="l3_tog(4)">E<br>OFF</div>
+                    <div class="l-sw" id="l3-sw-5" onclick="l3_tog(5)">F<br>OFF</div>
+                    <div class="l-sw" id="l3-sw-6" onclick="l3_tog(6)">G<br>OFF</div>
+                    <div class="l-sw" id="l3-sw-7" onclick="l3_tog(7)">H<br>OFF</div>
                 </div>
                 <button class="btn btn-green" onclick="l3_check()">SYSTEM PRÜFEN</button>
             </div>
             <div class="note-paper">
-                <h3>Notiz 3</h3>
-                Die Firewall verlangt pure Logik:<br><br>
-                1. Schalter A und D müssen zwingend denselben Status haben.<br>
-                2. Wenn B aktiv (ON) ist, muss C inaktiv (OFF) sein.<br>
-                3. Es müssen am Ende exakt 2 Schalter aktiv (ON) sein.<br>
-                4. C und D dürfen nicht beide inaktiv sein.<br><br>
-                Es gibt mathematisch nur eine einzige Lösung.
+                <h3>Spezifikation</h3>
+                Timer: 25s.<br>
+                1. A,C,F synchron.<br>
+                2. B ≠ G.<br>
+                3. E = H.<br>
+                4. D ≠ A.<br>
+                5. Exakt 4 Gates ON.<br>
+                6. A = ON.<br>
+                7. G = OFF.
             </div>
         </div>
     </div>
 
-    <!-- LEVEL 4: PLATINEN-PFAD -->
+    <!-- LEVEL 4 -->
     <div id="level-4" class="screen">
         <h2>KAMMER IV: PLATINEN-PFAD</h2>
         <div class="game-area">
@@ -202,65 +176,59 @@
                 </div>
                 <button class="btn btn-green" onclick="l4_check()">STROM EIN</button>
             </div>
-            <div class="note-paper"><h3>Notiz 4</h3>Alle 25 Kacheln werden benötigt! Drehe die Bauteile, um eine einzige lange Stromlinie zu erschaffen, die oben links startet, sich komplett durch das Feld webt und unten rechts wieder herausfließt.</div>
+            <div class="note-paper"><h3>Spezifikation</h3>Stromkreislauf schließen. Sektoren [X] sind irreparabel beschädigt. Alle intakten Komponenten müssen verbaut werden.</div>
         </div>
     </div>
 
-    <!-- LEVEL 5: THE BYPASS -->
+    <!-- LEVEL 5 (LIGHTS OUT) -->
     <div id="level-5" class="screen">
         <h2>KAMMER V: THE BYPASS</h2>
         <div class="game-area">
-            <div class="vault-panel">
+            <div class="vault-panel" style="position: relative;">
                 <div class="lcd" id="l5-lcd">GRID OFFLINE</div>
-                <div class="bypass-grid">
-                    <div class="bypass-sw sw-red" id="l5-sw-0" onclick="l5_switch(0)"></div>
-                    <div class="bypass-sw sw-red" id="l5-sw-1" onclick="l5_switch(1)"></div>
-                    <div class="bypass-sw sw-red" id="l5-sw-2" onclick="l5_switch(2)"></div>
+                <div class="bypass-grid" id="l5-grid">
+                    <!-- Injected via JS -->
                 </div>
             </div>
             <div class="note-paper">
-                <h3>Notiz 5</h3>
-                Die physischen Relais sind im Loop gefangen. Schalter 1 invertiert 1+2. Schalter 2 invertiert 2+3. Schalter 3 invertiert 3+1. Ein direkter Zugriff (Alle Grün) ist mathematisch absolut unmöglich. <br><br>
-                Höre auf, dich im Kreis zu drehen. Nutze den manuellen <span class="hidden-link" onclick="l5_override()">OVERRIDE</span>, um die Matrix zu umgehen.
+                <h3>Spezifikation</h3>
+                Alle Relais müssen auf GRÜN geschaltet werden. Warnung: Jeder Zugriff invertiert das gewählte Relais sowie alle direkten Nachbarn (Oben, Unten, Links, Rechts).
             </div>
         </div>
     </div>
 
-    <!-- LEVEL 6: ECHOLOT -->
+    <!-- LEVEL 6 (8x8 ECHOLOT) -->
     <div id="level-6" class="screen">
         <h2>KAMMER VI: PING-LOKALISIERUNG</h2>
         <div class="game-area">
             <div class="vault-panel">
-                <div class="lcd" id="l6-lcd">PINGS: 3</div>
+                <div class="lcd" id="l6-lcd">PINGS: 2</div>
                 <div class="echo-grid" id="l6-grid"></div>
             </div>
             <div class="note-paper">
-                <h3>Notiz 6</h3>
-                Der Kern ist in diesem 5x5 Feld unsichtbar versteckt. Du hast 3 Pings.<br><br>
-                Tippst du ein Feld an, verrät es dir die exakte Distanz (Schritte hoch/runter/links/rechts) zum Kern. Analysiere die Distanzen und finde ihn beim 4. Klick!
+                <h3>Spezifikation</h3>
+                Lokalisierung. Max 2 Pings. Klick zeigt Manhatten-Distanz (Schritte vertikal + horizontal) zum Ziel. Dritter Vorgang bindend.
             </div>
         </div>
     </div>
 
-    <!-- LEVEL 7: LASER MATRIX (SCHWER) -->
+    <!-- LEVEL 7 (6x6 LASER) -->
     <div id="level-7" class="screen">
         <h2>KAMMER VII: LASER-MATRIX</h2>
         <div class="game-area">
             <div class="vault-panel">
                 <div class="laser-grid">
                     <div class="laser-port port-in"></div><div class="laser-port port-out"></div>
-                    <div class="laser-cell" onclick="l7_tog(0)" id="l7-0">&nbsp;</div><div class="laser-cell" onclick="l7_tog(1)" id="l7-1">&nbsp;</div><div class="laser-cell" onclick="l7_tog(2)" id="l7-2">&nbsp;</div>
-                    <div class="laser-cell" onclick="l7_tog(3)" id="l7-3">&nbsp;</div><div class="laser-cell" style="background:#111; color:#555;">[X]</div><div class="laser-cell" onclick="l7_tog(5)" id="l7-5">&nbsp;</div>
-                    <div class="laser-cell" onclick="l7_tog(6)" id="l7-6">&nbsp;</div><div class="laser-cell" onclick="l7_tog(7)" id="l7-7">&nbsp;</div><div class="laser-cell" onclick="l7_tog(8)" id="l7-8">&nbsp;</div>
+                    <div id="l7-grid-content" style="display:contents;"></div>
                     <div class="laser-dot" id="l7-dot"></div>
                 </div>
-                <button class="btn btn-green" onclick="l7_fire()">LASER FEUERN</button>
+                <button class="btn btn-green" onclick="l7_fire()" style="margin-top:20px;">LASER FEUERN</button>
             </div>
-            <div class="note-paper"><h3>Notiz 7</h3>Baue den Pfad (Tippen: Leer -> / -> \). Der Laser kommt oben links rein und muss in der <b>Mitte rechts</b> das System verlassen. Er darf [X] und die Ränder nicht treffen. Führe ihn im Bogen ans Ziel.</div>
+            <div class="note-paper"><h3>Spezifikation</h3>Laser-Routing 6x6. Eintritt: Oben Links. Austritt: Unten Rechts. Optischer Weg darf die Blocker [X] nicht berühren.</div>
         </div>
     </div>
 
-    <!-- LEVEL 8: OMEGA PROTOKOLL (Das psychologische Brainfuck Finale) -->
+    <!-- LEVEL 8 -->
     <div id="level-8" class="screen">
         <h2>KAMMER VIII: OMEGA-TOLERANZ</h2>
         <div class="game-area">
@@ -268,15 +236,30 @@
                 <div class="lcd" id="l8-lcd" style="color:#c23616; font-size: 18px; animation: blink 1s infinite;">CRITICAL OVERLOAD</div>
                 
                 <div class="omega-bar-container">
+                    <div class="omega-zone"></div>
                     <div id="l8-bar"></div>
                 </div>
 
-                <button class="btn btn-red" style="height: 70px; font-size: 22px; animation: pulse 1s infinite;">ABORT PURGE</button>
+                <button class="btn btn-red" id="l8-btn" style="height: 70px; font-size: 22px;">ABORT PURGE</button>
             </div>
             <div class="note-paper">
-                <h3>Notiz 8</h3>
-                ACHTUNG: Der Overlord hat einen fatalen Speicher-Dump eingeleitet, um unsere Verbindung zu kappen.<br><br>
-                Der rote Überlastungs-Kern füllt sich unaufhaltsam! Verhindere um jeden Preis, dass der Balken kritische 100% erreicht, sonst werden unsere Daten gelöscht. Drücke den ABORT-Knopf, um das System immer wieder zu entladen! Halte stand!
+                <h3>Spezifikation</h3>
+                Speicher-Dump aktiv! <br><br>Drücke ABORT ausschließlich im kritischen Endbereich (>85%). 3 Zyklen erforderlich.
+            </div>
+        </div>
+    </div>
+
+    <!-- PENALTY SCREEN (WARTESCHLANGE) -->
+    <div id="penalty-screen" class="screen">
+        <h2>SYSTEM LOCKDOWN</h2>
+        <div class="game-area">
+            <div class="vault-panel" style="min-height: 250px; position: relative;" id="pen-panel">
+                <div class="lcd" id="pen-lcd" style="color:#c23616; font-size: 16px;">WARTE...</div>
+                <div class="pen-dot" id="pen-dot"></div>
+            </div>
+            <div class="note-paper">
+                <h3>Sicherheitsverstoß</h3>
+                Das System blockiert den Zugriff auf Kammer VIII. Fange 5 Signale innerhalb von 8 Sekunden ein, um den Zugriff wiederherzustellen.
             </div>
         </div>
     </div>
@@ -287,18 +270,18 @@
         <div style="background: #fff; padding: 20px; border: 2px solid #ccc; border-radius: 10px; margin-top: 20px;">
             <div style="color:#222; font-size:20px; font-weight: bold; font-family: monospace; white-space: nowrap; overflow-x: auto;" id="final-coords"></div>
         </div>
-        <p style="margin-top:20px; color:#555; text-align:center; font-weight: bold;">Du hast die Psychologie der Maschine gebrochen.<br>Der Tresor ist offen.</p>
+        <p style="margin-top:20px; color:#555; text-align:center; font-weight: bold;">Der Tresor ist offen.</p>
     </div>
 
     <script>
-        // GLOBALS
+        // GLOBALS & AUDIO
         let audioCtx;
         function initSystem(){ 
             if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); 
-            l2_init(); l4_init(); l6_init();
+            l2_init(); l4_init(); l5_init(); l6_init(); l7_init();
         }
         function playTone(f, t, d){ if(!audioCtx) return; let o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.type=t; o.frequency.value=f; o.connect(g); g.connect(audioCtx.destination); o.start(); g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+d); o.stop(audioCtx.currentTime+d); }
-        const sndS=()=>playTone(800,'sine',0.1); const sndE=()=>playTone(150,'sawtooth',0.4); const sndB=()=>playTone(400,'square',0.05);
+        const sndS=()=>playTone(800,'sine',0.1); const sndE=()=>playTone(150,'sawtooth',0.4); const sndB=()=>playTone(400,'square',0.05); const sndFatal=()=>playTone(100,'sawtooth',1.5);
         
         function switchLevel(h, s){ 
             document.getElementById(h).classList.remove('active'); 
@@ -311,31 +294,35 @@
             let x=parseInt(document.getElementById('l1-x').value), y=parseInt(document.getElementById('l1-y').value), z=parseInt(document.getElementById('l1-z').value);
             let err = Math.abs(x-25) + Math.abs(y-71) + Math.abs(z-48);
             let sig = Math.max(0, Math.floor(100 - (err/2.0)));
-            document.getElementById('l1-val').innerText = sig;
             document.getElementById('l1-fill').style.width = sig + '%';
             document.getElementById('l1-fill').style.background = `rgb(${255 - sig*2}, ${sig*2.5}, 0)`;
             let btn = document.getElementById('l1-btn');
-            if(sig >= 98){ btn.style.opacity=1; btn.style.pointerEvents='auto'; } else { btn.style.opacity=0.5; btn.style.pointerEvents='none'; }
+            if(sig === 100){ btn.style.opacity=1; btn.style.pointerEvents='auto'; } else { btn.style.opacity=0.5; btn.style.pointerEvents='none'; }
         }
         function l1_win(){ sndS(); switchLevel('level-1', 'level-2'); }
 
-        // --- L2: SOKOBAN ---
+// --- L2: SOKOBAN (HARD 7x7 PURE LOGIC) ---
         const l2_map = [
-            [1,1,1,1,1,1],
-            [1,2,0,0,2,1],
-            [1,0,0,0,0,1],
-            [1,0,0,0,0,1],
-            [1,0,0,0,0,1],
-            [1,1,1,1,1,1]
+            [1,1,1,1,1,1,1],
+            [1,2,2,0,0,0,1],
+            [1,2,0,0,0,0,1],
+            [1,0,0,0,1,0,1],
+            [1,1,1,0,0,0,1],
+            [1,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1]
         ];
         let l2_boxes = [], l2_px = 0, l2_py = 0;
         function l2_init() {
-            sndB(); l2_boxes = [{x:2, y:2}, {x:3, y:2}]; l2_px = 2; l2_py = 3; l2_draw();
+            sndB(); 
+            // Die Kisten stehen jetzt 100% sicher auf freiem Boden (0)
+            l2_boxes = [{x:3, y:2}, {x:4, y:2}, {x:4, y:4}]; 
+            l2_px = 5; l2_py = 5; 
+            l2_draw();
         }
         function l2_draw() {
             let html = '';
-            for(let y=0; y<6; y++) {
-                for(let x=0; x<6; x++) {
+            for(let y=0; y<7; y++) {
+                for(let x=0; x<7; x++) {
                     let isWall = l2_map[y][x] === 1, isTarget = l2_map[y][x] === 2;
                     let isBox = l2_boxes.some(b => b.x === x && b.y === y), isPlayer = (x === l2_px && y === l2_py);
                     let cBase = "soko-cell" + (isWall ? " soko-wall" : "");
@@ -361,186 +348,224 @@
             sndB(); l2_px = nx; l2_py = ny; l2_draw();
             let won = true;
             for(let b of l2_boxes) { if(l2_map[b.y][b.x] !== 2) won = false; }
-            if(won) { sndS(); document.getElementById('l2-lcd').innerText = "DATA SECURED"; document.getElementById('l2-lcd').style.color = "#0a0"; setTimeout(() => switchLevel('level-2', 'level-3'), 1500); }
+            if(won) { sndS(); document.getElementById('l2-lcd').innerText = "SECURED"; document.getElementById('l2-lcd').style.color = "#0a0"; setTimeout(() => switchLevel('level-2', 'level-3'), 1500); }
         }
 
-        // --- L3: BOOLEAN LOGIC ---
-        let l3_sw = [0,0,0,0]; 
-        const l3_names = ['A', 'B', 'C', 'D'];
+        // --- L3: BOOLEAN LOGIC (8 GATES, 25s TIMER) ---
+        let l3_sw = [0,0,0,0,0,0,0,0]; 
+        const l3_names = ['A','B','C','D','E','F','G','H'];
+        let l3_timer = null; let l3_time = 25;
+        
         function l3_tog(i) {
             sndB(); l3_sw[i] = 1 - l3_sw[i];
             let el = document.getElementById(`l3-sw-${i}`);
-            if(l3_sw[i] === 1) { el.classList.add('on'); el.innerHTML = `${l3_names[i]}<br>ON`; } 
-            else { el.classList.remove('on'); el.innerHTML = `${l3_names[i]}<br>OFF`; }
+            if(l3_sw[i] === 1) { el.classList.add('on'); el.innerHTML = `${l3_names[i]}<br>ON`; } else { el.classList.remove('on'); el.innerHTML = `${l3_names[i]}<br>OFF`; }
+            
+            if(!l3_timer) {
+                l3_time = 25; document.getElementById('l3-lcd').innerText = `T-MINUS ${l3_time}s`; document.getElementById('l3-lcd').style.color = "#c23616";
+                l3_timer = setInterval(() => {
+                    l3_time--; document.getElementById('l3-lcd').innerText = `T-MINUS ${l3_time}s`;
+                    if(l3_time <= 0) {
+                        sndE(); clearInterval(l3_timer); l3_timer = null;
+                        document.getElementById('l3-lcd').innerText = "LOCKOUT";
+                        l3_sw = [0,0,0,0,0,0,0,0]; 
+                        for(let j=0;j<8;j++){ document.getElementById(`l3-sw-${j}`).classList.remove('on'); document.getElementById(`l3-sw-${j}`).innerHTML = `${l3_names[j]}<br>OFF`; }
+                        setTimeout(() => { document.getElementById('l3-lcd').innerText = "LOGIC GATES"; document.getElementById('l3-lcd').style.color = "#1a1a1a"; }, 1500);
+                    }
+                }, 1000);
+            }
         }
         function l3_check() {
-            if(l3_sw[0] === 1 && l3_sw[1] === 0 && l3_sw[2] === 0 && l3_sw[3] === 1) { sndS(); switchLevel('level-3', 'level-4'); } 
-            else {
-                document.getElementById('l3-lcd').innerText = "LOGIC ERROR"; document.getElementById('l3-lcd').style.color = "#a00"; sndE();
-                setTimeout(() => { document.getElementById('l3-lcd').innerText = "LOGIC GATES"; document.getElementById('l3-lcd').style.color = "#1a1a1a"; }, 1500);
-            }
+            if(l3_sw[0]===1 && l3_sw[1]===1 && l3_sw[2]===1 && l3_sw[3]===0 && l3_sw[4]===0 && l3_sw[5]===1 && l3_sw[6]===0 && l3_sw[7]===0) { 
+                sndS(); if(l3_timer) clearInterval(l3_timer); switchLevel('level-3', 'level-4'); 
+            } else { document.getElementById('l3-lcd').innerText = "ERROR"; sndE(); }
         }
 
         // --- L4: PLATINEN-PFAD ---
-        const l4_svgs = [
-            '<path d="M 22.5 0 L 22.5 22.5 L 45 22.5" stroke="#c23616" stroke-width="8" stroke-linecap="square" fill="none"/>', 
-            '<path d="M 22.5 0 L 22.5 45" stroke="#c23616" stroke-width="8" stroke-linecap="square" fill="none"/>'
-        ];
+        const l4_svgs = ['<path d="M 22.5 0 L 22.5 22.5 L 45 22.5" stroke="#c23616" stroke-width="8" stroke-linecap="square" fill="none"/>', '<path d="M 22.5 0 L 22.5 45" stroke="#c23616" stroke-width="8" stroke-linecap="square" fill="none"/>'];
         let l4_board = [
-            [1,1,0], [1,1,0], [1,1,0], [1,1,0], [0,2,0],
-            [0,1,0], [1,1,0], [1,1,0], [1,1,0], [0,3,0],
-            [0,0,0], [1,1,0], [1,1,0], [1,1,0], [0,2,0],
-            [0,1,0], [1,1,0], [1,1,0], [1,1,0], [0,3,0],
-            [0,0,0], [1,1,0], [1,1,0], [1,1,0], [1,1,0]
+            [1, 1, 0], [0, 2, 0], [-1,0, 0], [-1,0, 0], [-1,0, 0],
+            [0, 1, 0], [0, 3, 0], [0, 1, 0], [1, 1, 0], [0, 2, 0],
+            [0, 0, 0], [1, 1, 0], [0, 3, 0], [-1,0, 0], [1, 0, 0],
+            [-1,0, 0], [-1,0, 0], [-1,0, 0], [0, 1, 0], [0, 3, 0],
+            [-1,0, 0], [-1,0, 0], [-1,0, 0], [0, 0, 0], [1, 1, 0]
         ]; 
         function l4_init(){
             let html='';
             for(let i=0;i<25;i++){
-                l4_board[i][2] = Math.floor(Math.random() * 4);
-                html+=`<div class="circ-tile-5" id="c4-${i}" onclick="l4_rot(${i})"><svg width="45" height="45" viewBox="0 0 45 45">${l4_svgs[l4_board[i][0]]}</svg></div>`;
+                if(l4_board[i][0] === -1) { html+=`<div class="circ-tile-5 circ-broken">[X]</div>`; } 
+                else { l4_board[i][2] = Math.floor(Math.random() * 4); html+=`<div class="circ-tile-5" id="c4-${i}" onclick="l4_rot(${i})"><svg width="45" height="45" viewBox="0 0 45 45">${l4_svgs[l4_board[i][0]]}</svg></div>`; }
             }
             document.getElementById('l4-grid').innerHTML = html;
-            for(let i=0;i<25;i++) document.getElementById(`c4-${i}`).style.transform = `rotate(${l4_board[i][2]*90}deg)`;
+            for(let i=0;i<25;i++) if(l4_board[i][0] !== -1) document.getElementById(`c4-${i}`).style.transform = `rotate(${l4_board[i][2]*90}deg)`;
         }
         function l4_rot(i){ 
-            sndB(); l4_board[i][2] = (l4_board[i][2]+1)%4; 
+            if(l4_board[i][0] === -1) return; sndB(); l4_board[i][2] = (l4_board[i][2]+1)%4; 
             document.getElementById(`c4-${i}`).style.transform = `rotate(${l4_board[i][2]*90}deg)`; 
         }
         function l4_check(){
             let win=true;
             for(let i=0; i<25; i++) {
+                if(l4_board[i][0] === -1) continue; 
                 if (l4_board[i][0] === 1) { if (l4_board[i][2] % 2 !== l4_board[i][1] % 2) win = false; } 
                 else { if (l4_board[i][2] !== l4_board[i][1]) win = false; }
             }
             if(win){ sndS(); switchLevel('level-4', 'level-5'); } else sndE();
         }
 
-        // --- L5: THE BYPASS ---
-        let l5_state = [0, 0, 0]; 
-        function l5_updateVis(i) {
-            let el = document.getElementById(`l5-sw-${i}`);
-            if(l5_state[i] === 1) { el.classList.remove('sw-red'); el.classList.add('sw-green'); }
-            else { el.classList.remove('sw-green'); el.classList.add('sw-red'); }
+        // --- L5: THE BYPASS (LIGHTS OUT) ---
+        // 0=red, 1=green. To win: all 1s.
+        let l5_state = [1,0,1, 0,1,0, 1,0,1]; 
+        function l5_init() { l5_draw(); }
+        function l5_draw() {
+            let html = '';
+            for(let i=0; i<9; i++) {
+                let cls = l5_state[i] === 1 ? 'sw-green' : 'sw-red';
+                html += `<div class="bypass-sw ${cls}" onclick="l5_click(${i})"></div>`;
+            }
+            document.getElementById('l5-grid').innerHTML = html;
         }
-        function l5_switch(i) {
+        function l5_click(i) {
             sndB();
-            if(i === 0) { l5_state[0] = 1-l5_state[0]; l5_state[1] = 1-l5_state[1]; }
-            if(i === 1) { l5_state[1] = 1-l5_state[1]; l5_state[2] = 1-l5_state[2]; }
-            if(i === 2) { l5_state[2] = 1-l5_state[2]; l5_state[0] = 1-l5_state[0]; }
-            for(let j=0; j<3; j++) l5_updateVis(j);
-        }
-        function l5_override() {
-            sndS();
-            for(let i=0; i<3; i++) { l5_state[i] = 1; l5_updateVis(i); } 
-            document.getElementById('l5-lcd').innerText = "BYPASS ACCEPTED"; document.getElementById('l5-lcd').style.color = "#00b894";
-            setTimeout(() => switchLevel('level-5', 'level-6'), 1500);
+            const tog = (idx) => { if(idx>=0 && idx<9) l5_state[idx] = 1 - l5_state[idx]; };
+            tog(i);
+            if(i%3 !== 0) tog(i-1); // left
+            if(i%3 !== 2) tog(i+1); // right
+            if(i >= 3) tog(i-3); // top
+            if(i <= 5) tog(i+3); // bottom
+            l5_draw();
+            if(l5_state.every(x => x===1)) {
+                sndS(); document.getElementById('l5-lcd').innerText = "BYPASS ACCEPTED"; document.getElementById('l5-lcd').style.color = "#00b894";
+                setTimeout(() => switchLevel('level-5', 'level-6'), 1500);
+            }
         }
 
-        // --- L6: ECHOLOT ---
-        let l6_tx = 3, l6_ty = 1, l6_pings = 3;
+        // --- L6: ECHOLOT (8x8) ---
+        let l6_tx = 6, l6_ty = 5, l6_pings = 2;
         function l6_init() {
-            l6_pings = 3;
-            document.getElementById('l6-lcd').innerText = `PINGS: ${l6_pings}`; document.getElementById('l6-lcd').style.color = "#1a1a1a";
+            l6_pings = 2; document.getElementById('l6-lcd').innerText = `PINGS: ${l6_pings}`; document.getElementById('l6-lcd').style.color = "#1a1a1a";
             let html = '';
-            for(let y=0; y<5; y++) {
-                for(let x=0; x<5; x++) { html += `<button class="echo-btn" id="l6-b-${x}-${y}" onclick="l6_click(${x},${y})"></button>`; }
-            }
+            for(let y=0; y<8; y++) { for(let x=0; x<8; x++) { html += `<button class="echo-btn" id="l6-b-${x}-${y}" onclick="l6_click(${x},${y})"></button>`; } }
             document.getElementById('l6-grid').innerHTML = html;
         }
         function l6_click(x, y) {
             if(x === l6_tx && y === l6_ty) {
-                sndS();
-                document.getElementById(`l6-b-${x}-${y}`).innerText = "O"; document.getElementById(`l6-b-${x}-${y}`).style.background = "#00b894"; document.getElementById(`l6-b-${x}-${y}`).style.color = "#fff";
-                document.getElementById('l6-lcd').innerText = "KERN GEFUNDEN"; document.getElementById('l6-lcd').style.color = "#00b894";
-                setTimeout(() => switchLevel('level-6', 'level-7'), 1500);
+                sndS(); document.getElementById(`l6-b-${x}-${y}`).innerText = "O"; document.getElementById(`l6-b-${x}-${y}`).style.background = "#00b894"; document.getElementById(`l6-b-${x}-${y}`).style.color = "#fff";
+                document.getElementById('l6-lcd').innerText = "KERN GEFUNDEN"; document.getElementById('l6-lcd').style.color = "#00b894"; setTimeout(() => switchLevel('level-6', 'level-7'), 1500);
             } else {
                 if(l6_pings <= 0) {
-                    sndE(); document.getElementById('l6-lcd').innerText = "FEHLGESCHLAGEN"; document.getElementById('l6-lcd').style.color = "#c23616";
-                    setTimeout(l6_init, 1500);
+                    sndE(); document.getElementById('l6-lcd').innerText = "ERROR"; document.getElementById('l6-lcd').style.color = "#c23616"; setTimeout(l6_init, 1500);
                 } else {
-                    sndB(); l6_pings--;
-                    document.getElementById(`l6-b-${x}-${y}`).innerText = Math.abs(l6_tx - x) + Math.abs(l6_ty - y);
-                    document.getElementById(`l6-b-${x}-${y}`).classList.add('pinged');
-                    document.getElementById('l6-lcd').innerText = `PINGS: ${l6_pings}`;
+                    sndB(); l6_pings--; document.getElementById(`l6-b-${x}-${y}`).innerText = Math.abs(l6_tx - x) + Math.abs(l6_ty - y); document.getElementById(`l6-b-${x}-${y}`).classList.add('pinged'); document.getElementById('l6-lcd').innerText = `PINGS: ${l6_pings}`;
                 }
             }
         }
 
-        // --- L7: LASER (Middle Right Exit) ---
-        let l7_board = [0,0,0, 0,-1,0, 0,0,0]; 
+        // --- L7: LASER MATRIX (6x6) ---
+        let l7_board = Array(36).fill(0);
+        // Blocker setzen
+        [2, 7, 15, 22, 28, 33].forEach(i => l7_board[i] = -1);
         let l7_chars = ['&nbsp;', '/', '\\'];
-        function l7_tog(i){
-            if(i===4) return; sndB();
-            l7_board[i] = (l7_board[i] + 1) % 3;
-            document.getElementById(`l7-${i}`).innerHTML = l7_chars[l7_board[i]];
+        
+        function l7_init() {
+            let html = '';
+            for(let i=0; i<36; i++) {
+                if(l7_board[i] === -1) html += `<div class="laser-cell" style="background:#111; color:#555;">[X]</div>`; 
+                else html += `<div class="laser-cell" onclick="l7_tog(${i})" id="l7-${i}">&nbsp;</div>`;
+            }
+            document.getElementById('l7-grid-content').innerHTML = html;
         }
+        function l7_tog(i){ if(l7_board[i] === -1) return; sndB(); l7_board[i] = (l7_board[i] + 1) % 3; document.getElementById(`l7-${i}`).innerHTML = l7_chars[l7_board[i]]; }
         async function l7_fire(){
             let dot = document.getElementById('l7-dot');
             let x=-1, y=0, dx=1, dy=0; 
-            dot.style.transition = 'none'; dot.style.top = '24px'; dot.style.left = '-15px'; dot.style.opacity = 1;
+            dot.style.transition = 'none'; dot.style.top = '16px'; dot.style.left = '-15px'; dot.style.opacity = 1;
             await new Promise(r=>setTimeout(r,50));
-            dot.style.transition = 'all 0.3s linear';
-            
-            for(let s=0; s<15; s++){
+            dot.style.transition = 'all 0.15s linear';
+            for(let s=0; s<30; s++){
                 x+=dx; y+=dy;
-                dot.style.left = (x*64 + 25) + 'px'; dot.style.top = (y*64 + 25) + 'px';
-                await new Promise(r=>setTimeout(r,300));
-                
-                // EXIT is now at x=3, y=1 (Middle Row!)
-                if(x===3 && y===1){ sndS(); dot.style.opacity=0; switchLevel('level-7','level-8'); return;} 
-                if(x<0 || x>2 || y<0 || y>2 || (x===1&&y===1)){ sndE(); dot.style.opacity=0; return; } 
-                
-                let m = l7_board[y*3+x];
-                if(m===1) { let t=dx; dx=-dy; dy=-t; } 
-                else if (m===2) { let t=dx; dx=dy; dy=t; } 
+                dot.style.left = (x*42 + 15) + 'px'; dot.style.top = (y*42 + 15) + 'px';
+                await new Promise(r=>setTimeout(r,150));
+                if(x===6 && y===5 && dx===1){ sndS(); dot.style.opacity=0; switchLevel('level-7','level-8'); return;} 
+                if(x<0 || x>5 || y<0 || y>5 || l7_board[y*6+x] === -1){ sndE(); dot.style.opacity=0; return; } 
+                let m = l7_board[y*6+x];
+                if(m===1) { let t=dx; dx=-dy; dy=-t; } else if (m===2) { let t=dx; dx=dy; dy=t; } 
             }
         }
 
-        // --- L8: OMEGA PROTOKOLL (Der psychologische Trap) ---
-        let l8_progress = 0;
-        let l8_interval = null;
-        let l8_active = false;
+        // --- L8: OMEGA PROTOKOLL & PENALTY ---
+        let l8_progress = 0; let l8_interval = null; let l8_active = false; let l8_cycles = 0;
 
         function l8_start() {
-            l8_progress = 0;
+            l8_progress = 0; l8_cycles = 0;
             document.getElementById('l8-bar').style.width = '0%';
-            
-            // Kleine Verzögerung, damit wir nicht versehentlich den Klick vom Vorlevel werten
+            document.getElementById('l8-lcd').innerText = `CRITICAL OVERLOAD`; document.getElementById('l8-lcd').style.color = "#c23616";
+            document.getElementById('l8-lcd').style.animation = "blink 1s infinite";
             setTimeout(() => { l8_active = true; }, 800); 
-            
             if(l8_interval) clearInterval(l8_interval);
             l8_interval = setInterval(() => {
                 if(!l8_active) return;
+                l8_progress += 0.5; document.getElementById('l8-bar').style.width = l8_progress + '%';
                 
-                // Füllt sich langsam von selbst.
-                l8_progress += 0.5; // Dauert exakt 10 Sekunden bis 100%
-                document.getElementById('l8-bar').style.width = l8_progress + '%';
-                
-                if(l8_progress >= 100) { l8_win(); }
+                // DER TRICK: BEI 100% GEWINNT MAN!
+                if(l8_progress >= 100) { 
+                    l8_active = false;
+                    clearInterval(l8_interval);
+                    sndS();
+                    document.getElementById('l8-lcd').innerText = "PSYCHOLOGY BROKEN";
+                    document.getElementById('l8-lcd').style.color = "#00b894";
+                    document.getElementById('l8-lcd').style.animation = "none";
+                    document.getElementById('final-coords').innerText=atob("TjUwsCAxNy4xNTIsIEUwMTGwIDU4Ljg0NDY=");
+                    setTimeout(() => switchLevel('level-8', 'final-screen'), 2000);
+                }
             }, 50);
         }
 
-        // Die teuflische Mechanik: Jeder Berührungskontakt setzt den Balken zurück.
-        document.addEventListener('touchstart', l8_fail);
-        document.addEventListener('mousedown', l8_fail);
-
-        function l8_fail(e) {
+        // DER ABORT BUTTON (FÜHRT BEI ZU OFT KLICKEN IN DEN LOCKDOWN)
+        document.getElementById('l8-btn').addEventListener('click', () => {
             if(!l8_active) return;
-            // Spieler hat getippt!
-            l8_progress = 0;
-            document.getElementById('l8-bar').style.width = '0%';
-            sndB(); // Kurzes Feedback, dass der Klick registriert wurde
+            if(l8_progress >= 85 && l8_progress < 100) {
+                l8_progress = 0; l8_cycles++; sndS();
+                document.getElementById('l8-lcd').innerText = `CYCLE ${l8_cycles}/3 SUCCESS`; document.getElementById('l8-lcd').style.color = "#1a1a1a";
+                document.getElementById('l8-lcd').style.animation = "none";
+                if(l8_cycles >= 3) { triggerPenalty("SYSTEM LOCKDOWN"); } // STRAFE!
+            } else { triggerPenalty("TIMING ERROR"); }
+        });
+
+        function triggerPenalty(msg) {
+            l8_active = false; clearInterval(l8_interval); sndFatal();
+            document.getElementById('l8-lcd').innerText = msg; document.getElementById('l8-lcd').style.color = "#c23616";
+            document.getElementById('l8-lcd').style.animation = "none";
+            setTimeout(() => { startPenaltyGame(); }, 2000);
         }
 
-        function l8_win() {
-            l8_active = false;
-            clearInterval(l8_interval);
-            sndS();
-            document.getElementById('l8-lcd').innerText = "OVERLOAD SUCCESS";
-            document.getElementById('l8-lcd').style.color = "#00b894";
-            document.getElementById('l8-lcd').style.animation = "none";
-            document.getElementById('final-coords').innerText=atob("TjUwsCAxNy4xNTIsIEUwMTGwIDU4Ljg0NDY=");
-            setTimeout(() => switchLevel('level-8', 'final-screen'), 1500);
+        // WARTESCHLANGE (MINI GAME)
+        let pen_clicks = 0; let pen_timer = null;
+        function startPenaltyGame() {
+            switchLevel('level-8', 'penalty-screen');
+            pen_clicks = 0;
+            document.getElementById('pen-lcd').innerText = `KLICKS: 0/5 | ZEIT: 8s`;
+            let tgt = document.getElementById('pen-dot'); tgt.style.display = 'block';
+            movePenDot();
+            let timeleft = 8;
+            pen_timer = setInterval(() => {
+                timeleft--; document.getElementById('pen-lcd').innerText = `KLICKS: ${pen_clicks}/5 | ZEIT: ${timeleft}s`;
+                if(timeleft <= 0) { clearInterval(pen_timer); sndE(); startPenaltyGame(); } 
+            }, 1000);
+        }
+
+        document.getElementById('pen-dot').addEventListener('click', () => {
+            sndB(); pen_clicks++; document.getElementById('pen-lcd').innerText = `KLICKS: ${pen_clicks}/5 | ZEIT: ...`;
+            if(pen_clicks >= 5) {
+                clearInterval(pen_timer); document.getElementById('pen-dot').style.display = 'none'; sndS();
+                setTimeout(() => { switchLevel('penalty-screen', 'level-8'); }, 1000);
+            } else { movePenDot(); }
+        });
+
+        function movePenDot() {
+            let tgt = document.getElementById('pen-dot');
+            let nx = 20 + Math.random() * 240; let ny = 80 + Math.random() * 120;
+            tgt.style.left = nx + 'px'; tgt.style.top = ny + 'px';
         }
     </script>
 </body>
