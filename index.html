@@ -242,10 +242,11 @@
 
                 <button class="btn btn-red" id="l8-btn" style="height: 70px; font-size: 22px;">ABORT PURGE</button>
             </div>
-            <div class="note-paper">
-                <h3>Spezifikation</h3>
-                Speicher-Dump aktiv! <br><br>Drücke ABORT ausschließlich im kritischen Endbereich (>85%). 3 Zyklen erforderlich.
-            </div>
+              <div class="note-paper">
+               <h3>Spezifikation</h3>
+               Speicher-Dump aktiv! <br><br>Anweisung: Drücke ABORT ausschließlich im kritischen Endbereich (>85%).<br><br>
+               <span style="font-size: 11px; color: #888; font-style: italic;">>> System-Log: Wer den Regeln der Maschine gehorcht, wird von ihr dominiert. Die Lösung liegt jenseits des Gehorsams.</span>
+           </div>
         </div>
     </div>
 
@@ -297,7 +298,7 @@
             document.getElementById('l1-fill').style.width = sig + '%';
             document.getElementById('l1-fill').style.background = `rgb(${255 - sig*2}, ${sig*2.5}, 0)`;
             let btn = document.getElementById('l1-btn');
-            if(sig === 100){ btn.style.opacity=1; btn.style.pointerEvents='auto'; } else { btn.style.opacity=0.5; btn.style.pointerEvents='none'; }
+            if(sig === 99){ btn.style.opacity=1; btn.style.pointerEvents='auto'; } else { btn.style.opacity=0.5; btn.style.pointerEvents='none'; }
         }
         function l1_win(){ sndS(); switchLevel('level-1', 'level-2'); }
 
